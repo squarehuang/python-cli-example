@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import click
+import cli_app
+
+
+@click.group()
+def mock_cli():
+    pass
+
+
+@mock_cli.command()
+@click.option('--message', '-m', multiple=True)
+def run(message):
+    click.echo('from mock_cli')
+    click.echo(cli_app.joke())
+    click.echo('\n'.join(message))
+
+
+@mock_cli.command()
+def stop():
+    click.echo('stop')
+
+
+
+if __name__ == '__main__':
+    mock_cli()
